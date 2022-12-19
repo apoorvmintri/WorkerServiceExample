@@ -19,15 +19,15 @@ namespace WorkerServiceExample
         {
             while (!stoppingToken.IsCancellationRequested)
             {
-                //if (DateTime.Now.DayOfWeek == DayOfWeek.Monday && DateTime.Now.TimeOfDay.Hours == 14 && DateTime.Now.TimeOfDay.Minutes == 55 && DateTime.Now.TimeOfDay.Seconds == 0)
-                //{
-                var process = new Process();
-                process.StartInfo.FileName = _batchFile;
-                var dateTime = DateTime.Now.ToString("yyyy-MMM-dd HH:mm:ss");
-                process.StartInfo.Arguments = $"{_outputDir} {dateTime}";
-                process.Start();
-                await Task.Delay(1000, stoppingToken);
-                //}
+                if (DateTime.Now.DayOfWeek == DayOfWeek.Monday && DateTime.Now.TimeOfDay.Hours == 14 && DateTime.Now.TimeOfDay.Minutes == 55 && DateTime.Now.TimeOfDay.Seconds == 0)
+                {
+                    var process = new Process();
+                    process.StartInfo.FileName = _batchFile;
+                    var dateTime = DateTime.Now.ToString("yyyy-MMM-dd HH:mm:ss");
+                    process.StartInfo.Arguments = $"{_outputDir} {dateTime}";
+                    process.Start();
+                    await Task.Delay(1000, stoppingToken);
+                }
             }
         }
     }
